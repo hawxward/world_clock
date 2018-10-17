@@ -1,0 +1,20 @@
+﻿body {
+    background-color:#333;
+    color:white;
+}
+
+.title{
+    text-align:center;
+}
+
+.map{
+    text-align:center;
+}
+
+.clock{
+    text-align:center;
+}
+
+.timezones{
+    list-style:none;
+}
