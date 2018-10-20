@@ -5,11 +5,13 @@ ctx.translate(radius, radius);
 radius = radius * 0.90;
 drawClock();
 setInterval(drawClock, 1000);
+document.getElementById("plusOne").addEventListener("click", plusOneHour)
 
 function drawClock() {
     drawFace(ctx, radius);
     drawNumbers(ctx, radius);
     drawTime(ctx, radius);
+    plusOneHour();
 };
 
 function drawFace() {
@@ -49,13 +51,11 @@ function drawNumbers(ctx, radius) {
         ctx.translate(0, radius * 0.85);
         ctx.rotate(-ang);
     }
-}; 
+};
+    
 
 function drawTime(ctx, radius) {
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
+    var { hour, minute, second } = time();
     //hour
     hour = hour % 12;
     hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
@@ -66,8 +66,23 @@ function drawTime(ctx, radius) {
     // second
     second = (second * Math.PI / 30);
     drawRedHand(ctx, second, radius * 0.9, radius * 0.02);
+    
+
+    
+}
+function time() {
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    return { hour, minute, second };
 }
 
+function plusOneHour() {
+    var { hour, minute, second } = time();
+    var hour = hour + 1;
+    console.log(hour);
+    };
 function drawHand(ctx, pos, length, width) {
     ctx.beginPath();
     ctx.lineWidth = width;
@@ -92,5 +107,5 @@ function drawRedHand(ctx, pos, length, width) {
 }
 
 
-document.getElementById("plusOne").addEventListener("click", plusOneHour)
+
 
