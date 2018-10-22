@@ -72,6 +72,7 @@
     <Content Include="Content\bootstrap3.2.0.css" />
     <Content Include="index.HTML" />
     <Content Include="Scripts\clock.js" />
+    <Content Include="Scripts\moment-timezone.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

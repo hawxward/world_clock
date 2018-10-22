@@ -4,14 +4,12 @@ var radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
 drawClock();
-setInterval(drawClock, 1000);
 document.getElementById("plusOne").addEventListener("click", plusOneHour)
-
+setInterval(drawClock,500)
 function drawClock() {
     drawFace(ctx, radius);
     drawNumbers(ctx, radius);
     drawTime(ctx, radius);
-    plusOneHour();
 };
 
 function drawFace() {
@@ -59,6 +57,7 @@ function drawTime(ctx, radius) {
     //hour
     hour = hour % 12;
     hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    plusOneHour();
     drawHand(ctx, hour, radius * 0.5, radius * 0.07);
     //minute
     minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
@@ -80,32 +79,34 @@ function time() {
 
 function plusOneHour() {
     var { hour, minute, second } = time();
-    var hour = hour + 1;
-    console.log(hour);
-    };
+    hour = hour + 1;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+    
+}
+
+
 function drawHand(ctx, pos, length, width) {
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.lineCap = "round";
-    ctx.moveTo(0, 0);
-    ctx.rotate(pos);
-    ctx.lineTo(0, -length);
-    ctx.stroke();
-    ctx.rotate(-pos);
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0, 0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.stroke();
+        ctx.rotate(-pos);
 }
 
 function drawRedHand(ctx, pos, length, width) {
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.lineCap = "round";
-    ctx.moveTo(0, 0);
-    ctx.rotate(pos);
-    ctx.lineTo(0, -length);
-    ctx.strokeStyle = "#ff0000"
-    ctx.stroke();
-    ctx.rotate(-pos);
-}
-
-
-
-
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0, 0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.strokeStyle = "#ff0000"
+        ctx.stroke();
+        ctx.rotate(-pos);
+};
