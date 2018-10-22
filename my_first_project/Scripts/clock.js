@@ -50,7 +50,7 @@ function drawNumbers(ctx, radius) {
         ctx.rotate(-ang);
     }
 };
-    
+    //update
 
 function drawTime(ctx, radius) {
     var { hour, minute, second } = time();
