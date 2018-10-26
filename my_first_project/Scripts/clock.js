@@ -4,7 +4,7 @@ var radius = canvas.height / 2;
 ctx.translate(radius, radius);
 radius = radius * 0.90;
 drawClock();
-setInterval(drawClock, 1000);
+setInterval(drawClock, 100);
 
 function drawClock() {
     drawFace(ctx, radius);
@@ -52,10 +52,7 @@ function drawNumbers(ctx, radius) {
 }; 
 
 function drawTime(ctx, radius) {
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
+    var { hour, minute, second } =time();
     //hour
     hour = hour % 12;
     hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
@@ -66,6 +63,14 @@ function drawTime(ctx, radius) {
     // second
     second = (second * Math.PI / 30);
     drawRedHand(ctx, second, radius * 0.9, radius * 0.02);
+}
+
+function time() {
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    return { hour, minute, second };
 }
 
 function drawHand(ctx, pos, length, width) {
@@ -93,4 +98,5 @@ function drawRedHand(ctx, pos, length, width) {
 
 
 document.getElementById("plusOne").addEventListener("click", plusOneHour)
+
 
