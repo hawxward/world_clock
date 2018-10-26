@@ -5,11 +5,12 @@ ctx.translate(radius, radius);
 radius = radius * 0.90;
 drawClock();
 document.getElementById("plusOne").addEventListener("click", plusOneHour)
-setInterval(drawClock,500)
+
 function drawClock() {
     drawFace(ctx, radius);
     drawNumbers(ctx, radius);
     drawTime(ctx, radius);
+    drawCenterPoint(ctx, radius);
 };
 
 function drawFace() {
@@ -28,6 +29,9 @@ function drawFace() {
     ctx.lineWidth = radius * 0.1;
     ctx.stroke();
 
+}
+
+function drawCenterPoint(ctx, radius) {
     ctx.beginPath();
     ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
     ctx.fillStyle = '#333';
@@ -58,6 +62,13 @@ function drawTime(ctx, radius) {
     hour = hour % 12;
     hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
     plusOneHour();
+    plusTwoHours();
+    plusFourHours();
+    plusThreeHours();
+    plusFiveHours();
+    plusSixHours();
+    plusSevenHours();
+    plusEightHours();
     drawHand(ctx, hour, radius * 0.5, radius * 0.07);
     //minute
     minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
@@ -84,19 +95,84 @@ function plusOneHour() {
     hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
     drawHand(ctx, hour, radius * 0.5, radius * 0.07);
     console.log(hour)
+    ctx.strokeStyle = "#111111"
     
+}
+function plusTwoHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 2;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
+}
+function plusFourHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 4;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
+}
+function plusThreeHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 3;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
+}
+function plusFiveHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 5;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
+}
+function plusSixHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 6;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
+}
+function plusSevenHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 7;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
+}
+function plusEightHours() {
+    var { hour, minute, second } = time();
+    hour = hour + 8;
+    hour = hour % 12;
+    hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
+    drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+    console.log(hour)
+
 }
 
 
 function drawHand(ctx, pos, length, width) {
-        ctx.beginPath();
-        ctx.lineWidth = width;
-        ctx.lineCap = "round";
-        ctx.moveTo(0, 0);
-        ctx.rotate(pos);
-        ctx.lineTo(0, -length);
-        ctx.stroke();
-        ctx.rotate(-pos);
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0, 0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.strokeStyle = "#ffffff"
+    ctx.stroke();
+    ctx.rotate(-pos);
 }
 
 function drawRedHand(ctx, pos, length, width) {
