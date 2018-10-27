@@ -1,16 +1,32 @@
-﻿var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+﻿var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
 var radius = canvas.height / 2;
+
 ctx.translate(radius, radius);
 radius = radius * 0.90;
-drawClock();
-setInterval(drawClock, 100);
 
-function drawClock() {
+// Global Time Variables
+var now;
+var hour = 0;
+
+document.getElementById("addHour").addEventListener("click", function () {
+    hour += 1;
+});
+
+setInterval(function () {
+    date = new Date();
+
+    date.setHours(date.getHours() + hour);
+
+    drawClock(date);
+}, 1000);
+
+
+function drawClock(date) {
     drawFace(ctx, radius);
     drawNumbers(ctx, radius);
-    drawTime(ctx, radius);
-};
+    drawTime(ctx, radius, date);
+}
 
 function drawFace() {
     var grad;
@@ -33,6 +49,7 @@ function drawFace() {
     ctx.fillStyle = '#333';
     ctx.fill();
 }
+
 function drawNumbers(ctx, radius) {
     var ang;
     var num;
@@ -49,10 +66,12 @@ function drawNumbers(ctx, radius) {
         ctx.translate(0, radius * 0.85);
         ctx.rotate(-ang);
     }
-}; 
+};
 
-function drawTime(ctx, radius) {
-    var { hour, minute, second } =time();
+function drawTime(ctx, radius, date) {
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
     //hour
     hour = hour % 12;
     hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
@@ -63,14 +82,6 @@ function drawTime(ctx, radius) {
     // second
     second = (second * Math.PI / 30);
     drawRedHand(ctx, second, radius * 0.9, radius * 0.02);
-}
-
-function time() {
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    return { hour, minute, second };
 }
 
 function drawHand(ctx, pos, length, width) {
@@ -91,12 +102,7 @@ function drawRedHand(ctx, pos, length, width) {
     ctx.moveTo(0, 0);
     ctx.rotate(pos);
     ctx.lineTo(0, -length);
-    ctx.strokeStyle = "#ff0000"
+    ctx.strokeStyle = "#ff0000";
     ctx.stroke();
     ctx.rotate(-pos);
 }
-
-
-document.getElementById("plusOne").addEventListener("click", plusOneHour)
-
-
