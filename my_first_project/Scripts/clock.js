@@ -9,9 +9,6 @@ radius = radius * 0.90;
 var now;
 var hour = 0;
 
-document.getElementById("addHour").addEventListener("click", function () {
-    hour += 1;
-});
 
 setInterval(function () {
     date = new Date();
@@ -106,3 +103,6 @@ function drawRedHand(ctx, pos, length, width) {
     ctx.stroke();
     ctx.rotate(-pos);
 }
+
+
+$('#map').timezonePicker({ defaultValue: { value: "5.5", attribute: "offset" } });
