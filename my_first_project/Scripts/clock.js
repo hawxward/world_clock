@@ -8,12 +8,16 @@ radius = radius * 0.90;
 // Global Time Variables
 var now;
 var hour = 0;
+$('#map').timezonePicker({ defaultValue: { value: "0", attribute: "offset" } });
+
 
 
 setInterval(function () {
     date = new Date();
+    $("#map").data("timezonePicker").getValue();
+    var timezoneDiff = 0['offset'];
 
-    date.setHours(date.getHours() + hour);
+    date.setHours(date.getHours() + timezoneDiff);
 
     drawClock(date);
 }, 1000);
@@ -105,4 +109,3 @@ function drawRedHand(ctx, pos, length, width) {
 }
 
 
-$('#map').timezonePicker({ defaultValue: { value: "5.5", attribute: "offset" } });
