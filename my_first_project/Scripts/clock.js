@@ -105,4 +105,9 @@ function drawRedHand(ctx, pos, length, width) {
 }
 
 
-$('#map').timezonePicker({ defaultValue: { value: "5.5", attribute: "offset" } });
+$('#map').timezonePicker({ defaultValue: { value: "Europe/London", attribute: "timezone" } });
+$("#map").on("map:country:clicked", function () {
+    console.log($("#map").data('timezonePicker').getValue());
+});
+
+var array1 = [5, 6, 7, 8];
