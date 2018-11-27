@@ -14,11 +14,12 @@ setInterval(function () {
     date = new Date();
     
 
-    date.setHours(date.getHours() );
+    date.setHours(date.getHours());// need to add the offset from the array of objects that is being console.loged at end of javascript 
+
 
     drawClock(date);
 }, 1000);
-    $('#map').timezonePicker();
+    
 
 
 function drawClock(date) {
@@ -106,10 +107,11 @@ function drawRedHand(ctx, pos, length, width) {
     ctx.rotate(-pos);
 }
 
-
+// map
 $('#map').timezonePicker({ defaultValue: { value: "Europe/London", attribute: "timezone" } });
+// console.logs array of objects of the selected timezone
 $("#map").on("map:country:clicked", function () {
-    console.log($("#map").data('timezonePicker').getValue());
+    console.log($("#map").data("timezonePicker").getValue());
+    
 });
 
-var array1 = [5, 6, 7, 8];
