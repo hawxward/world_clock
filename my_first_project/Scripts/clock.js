@@ -14,12 +14,14 @@ setInterval(function () {
     date = new Date();
     
 
-    date.setHours(date.getHours());// need to add the offset from the array of objects that is being console.loged at end of javascript 
+    date.setHours(date.getHours() + $("#map").data("timezonePicker").getValue()[0].offset
+);// need to add the offset from the array of objects that is being console.loged at end of javascript 
 
 
     drawClock(date);
 }, 1000);
     
+$('#map').timezonePicker({ defaultValue: { value: "Europe/London", attribute: "timezone" } });
 
 
 function drawClock(date) {
@@ -108,10 +110,11 @@ function drawRedHand(ctx, pos, length, width) {
 }
 
 // map
-$('#map').timezonePicker({ defaultValue: { value: "Europe/London", attribute: "timezone" } });
 // console.logs array of objects of the selected timezone
-$("#map").on("map:country:clicked", function offset() {
-    console.log($("#map").data("timezonePicker").getValue()[0].offset);
-    
-});
+    $("#map").on("map:country:clicked", function () {
+        console.log($("#map").data('timezonePicker').getValue()[0].offset);
+        pop = $("#map").data("timezonePicker").getValue()[0].offset;
+        return pop;
+    });
 
+console.log(pop);
