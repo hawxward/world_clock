@@ -110,8 +110,8 @@ function drawRedHand(ctx, pos, length, width) {
 // map
 $('#map').timezonePicker({ defaultValue: { value: "Europe/London", attribute: "timezone" } });
 // console.logs array of objects of the selected timezone
-$("#map").on("map:country:clicked", function () {
-    console.log($("#map").data("timezonePicker").getValue());
+$("#map").on("map:country:clicked", function offset() {
+    console.log($("#map").data("timezonePicker").getValue()[0].offset);
     
 });
 
