@@ -14,9 +14,13 @@ setInterval(function () {
     date = new Date();
     
 
-    date.setHours(date.getHours() + $("#map").data("timezonePicker").getValue()[0].offset
-);// need to add the offset from the array of objects that is being console.loged at end of javascript 
-
+    date.setHours(date.getHours() + $("#map").data("timezonePicker").getValue()[0].offset); 
+    if (Number.isInteger($("#map").data("timezonePicker").getValue()[0].offset)) {
+        date.setMinutes(date.getMinutes() + 0);
+    }
+    else {
+        date.setMinutes(date.getMinutes() + 30);
+    }
 
     drawClock(date);
 }, 1000);
@@ -117,4 +121,4 @@ function drawRedHand(ctx, pos, length, width) {
         return pop;
     });
 
-console.log(pop);
+console.log($("#map").data("timezonePicker").getValue());
