@@ -1,4 +1,9 @@
-﻿
+﻿h1{
+    color:white;
+}
+h3{
+    color:white;
+}
 
 .title{
     text-align:center;
@@ -7,6 +12,7 @@
 .mapcol{
     text-align:center;
     height:100%;
+   
 }
 
 .clock{
@@ -24,5 +30,7 @@ html, body {
     margin: 0;
     padding: 0;
     background-color:#333;
-    color:white;
+}
+.select2-dropdown{
+    color:black;
 }

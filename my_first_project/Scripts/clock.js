@@ -12,14 +12,17 @@ var hour = 0;
 
 setInterval(function () {
     date = new Date();
-    
 
-    date.setHours(date.getHours() + $("#map").data("timezonePicker").getValue()[0].offset); 
+
+    date.setHours(date.getHours() + $("#map").data("timezonePicker").getValue()[0].offset);
     if (Number.isInteger($("#map").data("timezonePicker").getValue()[0].offset)) {
         date.setMinutes(date.getMinutes() + 0);
     }
-    else {
+    else if (Number.isInteger($("#map").data("timezonePicker").getValue()[0].offset * 2 )) {
         date.setMinutes(date.getMinutes() + 30);
+    }
+    else {
+        date.setMinutes(date.getMinutes() + 45);
     }
 
     drawClock(date);
